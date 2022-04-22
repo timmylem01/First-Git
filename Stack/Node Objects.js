@@ -1,5 +1,5 @@
 class Stack {
-    arrayStack;
+    currentNode;
     counter;
     constructor(inputArray) {
         this.counter = inputArray.length;
@@ -42,12 +42,3 @@ class Stack {
         return this.arrayStack.length;
     }
 }
-
-const newArr = [15, 24, 54, 66, 35];
-const stack1 = new Stack(newArr);
-
-// stack1.push(69);
-console.log(stack1.pop());
-// stack1.print();
-console.log(stack1.top());
-//console.log(stack1.size());
