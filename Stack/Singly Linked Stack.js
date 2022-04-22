@@ -1,37 +1,40 @@
 class Stack {
     firstNode;
-    currentNode;
     counter;
     constructor() {
         this.counter = 0;
-        this.currentNode = null;
+        this.firstNode = null;
     }
     print() {
-        
+        let headNode = this.firstNode; 
+        while (headNode != null) {
+            console.log(headNode.value);
+            headNode = headNode.nextNode;
         }
     }
     push(itemName) {
-        if (this.currentNode == null) {
-            const newNode = new Node(itemName);
+        if (this.firstNode == null) {
+            let newNode = new Node(itemName);
             this.firstNode = newNode;
-            this.currentNode = newNode;
         }
         else {
-            const newNode = new Node(itemName);
-            this.currentNode.nextNode = newNode;
-            this.currentNode = newNode;
+            let newNode = new Node(itemName);
+            newNode.nextNode = this.firstNode;
+            this.firstNode = newNode;
         }
+        this.counter++;
     }
     pop() {
-       return this.arrayStack.pop();
-       // what would happen if stack was empty?
+        let tempVal = this.firstNode.value;
+        this.firstNode = this.firstNode.nextNode;
+        this.counter--;
+        return tempVal;
     }
     top() {
-        return this.arrayStack[this.arrayStack.length - 1];
-        // what would happen if stack was empty?
+        return this.firstNode.value;
     }
-    empty() {
-        if (this.arrayStack.length == 0) {
+    isEmpty() {
+        if (this.firstNode == null) {
             return true;
         }
         else {
@@ -39,7 +42,7 @@ class Stack {
         }
     }
     size() {
-        return this.arrayStack.length;
+        return this.counter;
     }
 }
 
@@ -52,3 +55,13 @@ class Node {
     }
 }
 
+const stack1 = new Stack();
+
+stack1.push(1);
+stack1.push(2);
+stack1.push(3);
+stack1.pop();
+stack1.print();
+// console.log(stack1.top());
+console.log(stack1.size());
+console.log(stack1.isEmpty());
